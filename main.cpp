@@ -1,5 +1,8 @@
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
 using namespace std;
 
 struct Mahasiswa {
@@ -17,31 +20,14 @@ Mahasiswa *tail = NULL;
 void login() {
     string user, pass;
     do {
-		cout << "Selamat Datang di Aplikasi Mahasiswa!"<<endl;
+        cout << "Selamat Datang di Aplikasi Mahasiswa!" << endl;
         cout << "Ayo Login Terlebih Dahulu!\n";
-        cout << "====================================="<<endl;
+        cout << "=====================================" << endl;
         cout << "Username : "; cin >> user;
         cout << "Password : "; cin >> pass;
 
         if (user != "admin" || pass != "123") {
-            cout << "Login gagal! Nama atau Password mungin salah!\n\n";
-        }
-    } while (user != "admin" || pass != "123");
-
-    cout << "Selamat, Login Telah Sukses!\n";
-}
-// ================= LOGIN =================
-void login() {
-    string user, pass;
-    do {
-		cout << "Selamat Datang di Aplikasi Mahasiswa!"<<endl;
-        cout << "Ayo Login Terlebih Dahulu!\n";
-        cout << "====================================="<<endl;
-        cout << "Username : "; cin >> user;
-        cout << "Password : "; cin >> pass;
-
-        if (user != "admin" || pass != "123") {
-            cout << "Login gagal! Nama atau Password mungin salah!\n\n";
+            cout << "Login gagal! Nama atau Password mungkin salah!\n\n";
         }
     } while (user != "admin" || pass != "123");
 
@@ -50,17 +36,17 @@ void login() {
 
 // ================= HITUNG NILAI =================
 float hitungNilai(float nilai) {
-    return nilai; // bisa kamu ubah jadi lebih kompleks
+    return nilai;
 }
 
+// ================= INPUT DATA =================
 void inputData() {
     int n;
-    cout << "====================================="<<endl;
-    cout << "| >> Input Mahasiswa >> |"<<endl;
-    cout << "====================================="<<endl;
+    cout << "=====================================" << endl;
+    cout << "|      >> Input Mahasiswa >>        |" << endl;
+    cout << "=====================================" << endl;
     cout << "Ingin Input Berapa Data? ";
     cin >> n;
-
     cin.ignore();
 
     for (int i = 1; i <= n; i++) {
@@ -75,8 +61,9 @@ void inputData() {
         cin.ignore();
 
         baru->nilaiAkhir = hitungNilai(baru->nilai);
+        baru->next = NULL;
+        baru->prev = NULL;
 
-        // 🔥 masuk ke linked list
         if (head == NULL) {
             head = tail = baru;
             head->next = head;
@@ -84,34 +71,11 @@ void inputData() {
         } else {
             baru->prev = tail;
             baru->next = head;
-
             tail->next = baru;
             head->prev = baru;
-
             tail = baru;
         }
 
         cout << "Selamat, Data Kamu berhasil ditambahkan!\n";
     }
 }
-// ================= OUTPUT =================
-void tampilData() {
-    if (head == NULL) {
-        cout << "Data kosong!\n";
-        return;
-    }
-
-    // tampil awal
-    Mahasiswa *temp = head;
-
-	cout << "===============================================\n";
-	cout << "                 DATA MAHASISWA               \n"<<endl;;
-	cout << "===============================================\n";
-
-// header tabel
-cout << left << setw(20) << "Nama" << " | "
-     << setw(15) << "NIM" << " | "
-     << setw(20) << "Jurusan" << " | "
-     << setw(10) << "Nilai" << endl;
-
-cout << "---------------------------------------------------------------\n";
