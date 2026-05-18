@@ -272,3 +272,53 @@ void menuSearch() {
     else
         cout << "Pilihan tidak valid!\n";
 }
+// ================= EDIT =================
+void editData() {
+
+    system("cls");
+
+    string cari;
+
+    cout << "Masukkan NIM yang ingin diedit: ";
+    cin >> cari;
+
+    if (head == NULL) {
+        cout << "Data kosong!\n";
+        return;
+    }
+
+    Mahasiswa *temp = head;
+    bool ketemu = false;
+
+    do {
+
+        if (temp->nim == cari) {
+
+            cout << "\n===== DATA LAMA =====\n";
+            cout << "Nama     : " << temp->nama << endl;
+            cout << "NIM      : " << temp->nim << endl;
+            cout << "Jurusan  : " << temp->jurusan << endl;
+            cout << "Nilai    : " << temp->nilai << endl;
+
+            cin.ignore();
+
+            cout << "\n===== INPUT DATA BARU =====\n";
+            cout << "Nama baru     : "; getline(cin, temp->nama);
+            cout << "Jurusan baru  : "; getline(cin, temp->jurusan);
+            cout << "Nilai baru    : "; cin >> temp->nilai;
+
+            temp->nilaiAkhir = hitungNilai(temp->nilai);
+
+            cout << "\nData berhasil diperbarui!\n";
+
+            ketemu = true;
+            break;
+        }
+
+        temp = temp->next;
+
+    } while (temp != head);
+
+    if (!ketemu)
+        cout << "Data tidak ditemukan!\n";
+}
