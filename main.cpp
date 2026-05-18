@@ -660,3 +660,102 @@ void loadFile() {
 
     cout << "Data berhasil dimuat dari mahasiswa.txt!\n";
 }
+// ================= MENU =================
+void menu() {
+
+    int pilih;
+
+    do {
+
+        system("cls");
+
+        cout << "\n=====================================\n";
+        cout << "  Selamat Datang di Menu Mahasiswa!  \n";
+        cout << "=====================================\n";
+        cout << "1. Input Mahasiswa\n";
+        cout << "2. Tampil Data Mahasiswa\n";
+        cout << "3. Sorting Mahasiswa\n";
+        cout << "4. Search Mahasiswa\n";
+        cout << "5. Delete Mahasiswa\n";
+        cout << "6. Edit Mahasiswa\n";
+        cout << "7. Simpan Data ke File\n";
+        cout << "8. Load Data dari File\n";
+        cout << "9. Keluar\n";
+        cout << "=====================================\n";
+        cout << "Masukkan Menu : ";
+        cin >> pilih;
+
+        switch (pilih) {
+
+            case 1:
+                inputData();
+                system("pause");
+                system("cls");
+                break;
+
+            case 2:
+                tampilData();
+                system("pause");
+                system("cls");
+                break;
+
+            case 3:
+                menuSorting();
+                system("pause");
+                system("cls");
+                break;
+
+            case 4:
+                menuSearch();
+                system("pause");
+                system("cls");
+                break;
+
+            case 5:
+                deleteData();
+                system("pause");
+                system("cls");
+                break;
+
+            case 6:
+                editData();
+                system("pause");
+                system("cls");
+                break;
+
+           case 7:
+    simpanFile();
+    system("pause");
+    system("cls");
+    break;
+
+case 8:
+    loadFile();
+    system("pause");
+    system("cls");
+    break;
+
+            case 9:
+                simpanFile();
+                cout << "Terima kasih, sampai jumpa!\n";
+                break;
+
+            default:
+                cout << "Pilihan tidak valid!\n";
+                system("pause");
+                system("cls");
+                break;
+        }
+
+    } while (pilih != 9);
+}
+
+// ================= MAIN =================
+int main() {
+
+    login();
+    loadFile();
+    menu();
+
+    return 0;
+}
