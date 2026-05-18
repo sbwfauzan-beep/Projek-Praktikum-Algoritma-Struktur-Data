@@ -494,3 +494,81 @@ void bubbleSortNilai(int mode) {
         }
     }
 }
+// ======== QUICK SORT ========
+
+void quickSort(int kriteria, int mode) {
+
+    if (kriteria == 1)
+        bubbleSortNama(mode);
+
+    else if (kriteria == 2)
+        bubbleSortNIM(mode);
+
+    else if (kriteria == 3)
+        bubbleSortNilai(mode);
+}
+
+// ======== MENU SORTING ========
+
+void menuSorting() {
+
+    system("cls");
+
+    if (head == NULL) {
+        cout << "Data kosong!\n";
+        return;
+    }
+
+    int kriteria, algoritma, mode;
+
+    cout << "===== Pilih Kriteria Sorting =====\n";
+    cout << "1. Nama\n";
+    cout << "2. NIM\n";
+    cout << "3. Nilai\n";
+    cout << "Pilih: ";
+    cin >> kriteria;
+
+    cout << "\n===== Pilih Algoritma Sorting =====\n";
+    cout << "1. Bubble Sort\n";
+    cout << "2. Quick Sort\n";
+    cout << "Pilih: ";
+    cin >> algoritma;
+
+    cout << "\n===== Pilih Urutan =====\n";
+    cout << "1. Ascending\n";
+    cout << "2. Descending\n";
+    cout << "Pilih: ";
+    cin >> mode;
+
+    if (kriteria == 1) {
+
+        if (algoritma == 1)
+            bubbleSortNama(mode);
+        else
+            quickSort(1, mode);
+
+        tampilHasilSort("NAMA");
+
+    } else if (kriteria == 2) {
+
+        if (algoritma == 1)
+            bubbleSortNIM(mode);
+        else
+            quickSort(2, mode);
+
+        tampilHasilSort("NIM");
+
+    } else if (kriteria == 3) {
+
+        if (algoritma == 1)
+            bubbleSortNilai(mode);
+        else
+            quickSort(3, mode);
+
+        tampilHasilSort("NILAI");
+
+    } else {
+
+        cout << "Pilihan tidak valid!\n";
+    }
+}
