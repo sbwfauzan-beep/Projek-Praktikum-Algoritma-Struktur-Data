@@ -572,3 +572,91 @@ void menuSorting() {
         cout << "Pilihan tidak valid!\n";
     }
 }
+// ================= FILE =================
+
+// ================= OPERASI FILE =================
+
+// --- Simpan Data ke File ---
+void simpanFile() {
+
+    FILE *fp = fopen("mahasiswa.txt", "w");
+
+    if (fp == NULL) {
+        cout << "Gagal membuka file untuk disimpan!\n";
+        return;
+    }
+
+    if (head == NULL) {
+        cout << "Data kosong, tidak ada yang disimpan!\n";
+        fclose(fp);
+        return;
+    }
+
+    Mahasiswa *temp = head;
+
+    do {
+
+        fprintf(fp, "%s|%s|%s|%.2f|%.2f\n",
+                temp->nama.c_str(),
+                temp->nim.c_str(),
+                temp->jurusan.c_str(),
+                temp->nilai,
+                temp->nilaiAkhir);
+
+        temp = temp->next;
+
+    } while (temp != head);
+
+    fclose(fp);
+
+    cout << "Data berhasil disimpan ke mahasiswa.txt!\n";
+}
+
+// --- Load Data dari File ---
+void loadFile() {
+
+    FILE *fp = fopen("mahasiswa.txt", "r");
+
+    if (fp == NULL) {
+        return;
+    }
+
+    char nama[100], nim[50], jurusan[100];
+    float nilai, nilaiAkhir;
+
+    while (fscanf(fp,
+                  "%99[^|]|%49[^|]|%99[^|]|%f|%f\n",
+                  nama, nim, jurusan,
+                  &nilai, &nilaiAkhir) == 5) {
+
+        Mahasiswa *baru = new Mahasiswa;
+
+        baru->nama = string(nama);
+        baru->nim = string(nim);
+        baru->jurusan = string(jurusan);
+        baru->nilai = nilai;
+        baru->nilaiAkhir = nilaiAkhir;
+
+        baru->next = NULL;
+        baru->prev = NULL;
+
+        if (head == NULL) {
+
+            head = tail = baru;
+            head->next = head;
+            head->prev = head;
+
+        } else {
+
+            baru->prev = tail;
+            baru->next = head;
+            tail->next = baru;
+            head->prev = baru;
+            tail = baru;
+        }
+    }
+
+    fclose(fp);
+
+    cout << "Data berhasil dimuat dari mahasiswa.txt!\n";
+}
