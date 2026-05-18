@@ -375,3 +375,122 @@ void deleteData() {
 
     cout << "Data tidak ditemukan!\n";
 }
+// ================= SORTING =================
+
+void tampilHasilSort(string judulSort) {
+
+    cout << "\n===== HASIL SORTING BY " << judulSort << " =====\n";
+
+    cout << left << setw(20) << "Nama" << " | "
+         << setw(15) << "NIM" << " | "
+         << setw(20) << "Jurusan" << " | "
+         << setw(10) << "Nilai" << endl;
+
+    cout << "-----------------------------------------------------------------\n";
+
+    Mahasiswa *temp = head;
+
+    do {
+
+        cout << left << setw(20) << temp->nama << " | "
+             << setw(15) << temp->nim << " | "
+             << setw(20) << temp->jurusan << " | "
+             << setw(10) << temp->nilai << endl;
+
+        temp = temp->next;
+
+    } while (temp != head);
+}
+
+int hitungNode() {
+
+    int count = 0;
+
+    if (head == NULL)
+        return 0;
+
+    Mahasiswa *temp = head;
+
+    do {
+
+        count++;
+        temp = temp->next;
+
+    } while (temp != head);
+
+    return count;
+}
+
+// ======== BUBBLE SORT ========
+
+void bubbleSortNama(int mode) {
+
+    if (head == NULL || head->next == head)
+        return;
+
+    Mahasiswa *i, *j;
+
+    for (i = head; i->next != head; i = i->next) {
+
+        for (j = i->next; j != head; j = j->next) {
+
+            if ((mode == 1 && i->nama > j->nama) ||
+                (mode == 2 && i->nama < j->nama)) {
+
+                swap(i->nama, j->nama);
+                swap(i->nim, j->nim);
+                swap(i->jurusan, j->jurusan);
+                swap(i->nilai, j->nilai);
+                swap(i->nilaiAkhir, j->nilaiAkhir);
+            }
+        }
+    }
+}
+
+void bubbleSortNIM(int mode) {
+
+    if (head == NULL || head->next == head)
+        return;
+
+    Mahasiswa *i, *j;
+
+    for (i = head; i->next != head; i = i->next) {
+
+        for (j = i->next; j != head; j = j->next) {
+
+            if ((mode == 1 && i->nim > j->nim) ||
+                (mode == 2 && i->nim < j->nim)) {
+
+                swap(i->nama, j->nama);
+                swap(i->nim, j->nim);
+                swap(i->jurusan, j->jurusan);
+                swap(i->nilai, j->nilai);
+                swap(i->nilaiAkhir, j->nilaiAkhir);
+            }
+        }
+    }
+}
+
+void bubbleSortNilai(int mode) {
+
+    if (head == NULL || head->next == head)
+        return;
+
+    Mahasiswa *i, *j;
+
+    for (i = head; i->next != head; i = i->next) {
+
+        for (j = i->next; j != head; j = j->next) {
+
+            if ((mode == 1 && i->nilai > j->nilai) ||
+                (mode == 2 && i->nilai < j->nilai)) {
+
+                swap(i->nama, j->nama);
+                swap(i->nim, j->nim);
+                swap(i->jurusan, j->jurusan);
+                swap(i->nilai, j->nilai);
+                swap(i->nilaiAkhir, j->nilaiAkhir);
+            }
+        }
+    }
+}
