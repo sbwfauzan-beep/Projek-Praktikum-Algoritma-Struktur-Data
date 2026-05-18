@@ -322,3 +322,56 @@ void editData() {
     if (!ketemu)
         cout << "Data tidak ditemukan!\n";
 }
+// ================= DELETE =================
+void deleteData() {
+
+    system("cls");
+
+    string cari;
+
+    cout << "Masukkan NIM: ";
+    cin >> cari;
+
+    if (head == NULL)
+        return;
+
+    Mahasiswa *temp = head;
+
+    do {
+
+        if (temp->nim == cari) {
+
+            if (temp == head && temp == tail) {
+
+                head = tail = NULL;
+
+            } else if (temp == head) {
+
+                head = head->next;
+                head->prev = tail;
+                tail->next = head;
+
+            } else if (temp == tail) {
+
+                tail = tail->prev;
+                tail->next = head;
+                head->prev = tail;
+
+            } else {
+
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+            }
+
+            delete temp;
+
+            cout << "Data berhasil dihapus!\n";
+            return;
+        }
+
+        temp = temp->next;
+
+    } while (temp != head);
+
+    cout << "Data tidak ditemukan!\n";
+}
